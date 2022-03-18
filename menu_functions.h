@@ -355,7 +355,6 @@ void listEntries(bool deleteMode = false)
           }
           if (index == 0)
           {
-
             Serial2.print(printString);
           }
           else if (index == 1)

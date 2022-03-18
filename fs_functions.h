@@ -12,7 +12,6 @@ void writeEntries()
   }
   cipher->setKey((char *)key.c_str());
   file.print(cipher->encryptString(buff));
-  Serial.println(buff);
   file.close();
 }
 
