@@ -2,10 +2,11 @@
 #include "SPIFFS.h"
 #include "Cipher.h"
 
-
+/// EDIT THESE VALUES TO MATCH THOSE IN YOU CONFIG.H
 #define PIN_LENGTH 4
 #define PIN_UNLOCK_LENGTH 16
-
+String key = "4321";
+///
 
 File file;
 Cipher *cipher = new Cipher();
@@ -17,7 +18,7 @@ void setup() {
   file = SPIFFS.open("/data.txt", "r");
   String buff = "";
   String block_buff = "";
-  String key = "3754";
+
   while (file.available())
   {
     block_buff = block_buff + (char)file.read();

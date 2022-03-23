@@ -34,6 +34,8 @@ bool up_triggered;
 bool down_triggered;
 bool enter_triggered;
 bool enter_long_triggered;
+bool up_long_triggered;
+bool down_long_triggered;
 byte menuIndicatorIndex = 0;
 
 String MainMenuItems[5] = {"ADD", "LIST", "DELETE ENTRY", "DELETE ALL ENTRIES", "EXPORT ALL ENTRIES"};
@@ -60,16 +62,22 @@ void handleEnterEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
 }
 void handleUpEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
 {
-  if (eventType == AceButton::kEventPressed)
+  if (eventType == AceButton::kEventReleased)
   {
     up_triggered = true;
+  } else if (eventType == AceButton::kEventLongPressed)
+  {
+    enter_long_triggered = true;
   }
 }
 void handleDownEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
 {
-  if (eventType == AceButton::kEventPressed)
+  if (eventType == AceButton::kEventReleased)
   {
     down_triggered = true;
+  } else if (eventType == AceButton::kEventLongPressed)
+  {
+    enter_long_triggered = true;
   }
 }
 
@@ -96,9 +104,13 @@ void setup()
   enterConfig.setEventHandler(handleEnterEvent);
   upConfig.resetFeatures();
   upConfig.setFeature(ButtonConfig::kFeatureClick);
+  upConfig.setFeature(ButtonConfig::kFeatureLongPress);
+  upConfig.setFeature(ButtonConfig::kFeatureSuppressAfterLongPress);
   upConfig.setEventHandler(handleUpEvent);
   downConfig.resetFeatures();
   downConfig.setFeature(ButtonConfig::kFeatureClick);
+  downConfig.setFeature(ButtonConfig::kFeatureLongPress);
+  downConfig.setFeature(ButtonConfig::kFeatureSuppressAfterLongPress);
   downConfig.setEventHandler(handleDownEvent);
 
   // General setup of the colorscheme we will use, change if desired

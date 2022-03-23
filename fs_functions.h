@@ -3,7 +3,7 @@ void writeEntries()
   file.close();
   file = SPIFFS.open("/data.txt", "w");
   String buff = CONTROL_CHAR;
-  for (byte i = columnCounter-1 ; i >= 0; i--)
+  for (byte i = 0; i < columnCounter; i++)
   {
     if (table[i][0] != "")
     {

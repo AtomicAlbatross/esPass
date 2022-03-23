@@ -172,7 +172,7 @@ This is not very secure as it might reduce the resistance against brute-force at
         Each entry has to be seperated by a comma. Make sure that the very last entry is closed by a comma.
         
     3. Install the ESP32 sketch data uploader in your Arduino IDE. **If you are using the Windows-Store-Version of the Arduino IDE, although technically possible, you cannot install external tools like this one. Use the standalone version instead.**
-    In the `Keypass/encrypt_file` folder, copy the text file you just created into the `data` folder an rename it to `data.txt`.
+    In the `Keypass/encrypt_file` folder, copy the text file you just created into the `data` folder an rename it to `data.txt`. Copy the `Cipher.cpp` and `Cipher.h` into the `encrypt_file` folder.
         
     4. Open the `encrypt_file/encrypt_file.ino` sketch, adjust the values for the defines to match those in your `config.h` file. Change the KEY define to the key you want to use.
     Then, use Tools > Upload ESP32 sketch data from the main menu to generate and upload the SPIFFS image. Finally, upload the sketch and let it run. You will see "DONE!" printed on the Serial Monitor at baud 115200. Upload the main `Keypass.ino` sketch and check if everything worked es intended.

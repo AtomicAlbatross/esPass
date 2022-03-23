@@ -293,6 +293,17 @@ void listEntries(bool deleteMode = false)
         setMenuIndicator(menuIndicatorIndex - 1);
       }
     }
+    else if (up_long_triggered) {
+      up_long_triggered = false;
+      
+      if (page > 0) {
+         page = page - 1;
+
+        displayEntries(page * MAX_MENU_ITEMS_ON_SCREEN);
+        setMenuIndicator(MAX_MENU_ITEMS_ON_SCREEN - 1);
+      }
+      
+    }
     else if (down_triggered)
     {
       down_triggered = false;
@@ -307,6 +318,12 @@ void listEntries(bool deleteMode = false)
       {
         setMenuIndicator(menuIndicatorIndex + 1);
       }
+    } else if (down_long_triggered) {
+      down_long_triggered = false;
+      
+       page = page + 1;
+        displayEntries(MAX_MENU_ITEMS_ON_SCREEN * page);
+        setMenuIndicator(0);
     }
     else if (enter_triggered)
     {
