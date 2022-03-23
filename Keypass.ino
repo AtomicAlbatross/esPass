@@ -49,7 +49,7 @@ byte columnCounter = 0;
 
 void handleEnterEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
 {
-  if (eventType == AceButton::kEventPressed)
+  if (eventType == AceButton::kEventReleased)
   {
     enter_triggered = true;
   }
@@ -112,7 +112,7 @@ void setup()
     while (1)
       ;
   }
-   if (!SPIFFS.exists("data.txt")) {
+   if (SPIFFS.exists("/data.txt")) {
     first_time_setup = false;
   }
  
@@ -166,14 +166,16 @@ void setup()
       down_triggered = false;
     }
   }
- 
+
+ String reset_key = (String) SECRET_RESET_KEY;
   
   for (byte i = 0; i < PIN_LENGTH; i++)
   {
     key[i] = alphabet[((String)key[i]).toInt()];
+    reset_key[i] = alphabet[((String)SECRET_RESET_KEY[i]).toInt()];
   }
 
-  if (key == ((String)SECRET_RESET_KEY).substring(0, PIN_LENGTH + 1)) {
+  if (key == reset_key.substring(0, PIN_LENGTH)) {
     file.close();
    SPIFFS.remove("/data.txt");
    ESP.restart();
