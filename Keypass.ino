@@ -67,7 +67,7 @@ void handleUpEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
     up_triggered = true;
   } else if (eventType == AceButton::kEventLongPressed)
   {
-    enter_long_triggered = true;
+    up_long_triggered = true;
   }
 }
 void handleDownEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
@@ -77,7 +77,7 @@ void handleDownEvent(AceButton *button, uint8_t eventType, uint8_t buttonState)
     down_triggered = true;
   } else if (eventType == AceButton::kEventLongPressed)
   {
-    enter_long_triggered = true;
+    down_long_triggered = true;
   }
 }
 

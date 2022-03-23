@@ -295,14 +295,13 @@ void listEntries(bool deleteMode = false)
     }
     else if (up_long_triggered) {
       up_long_triggered = false;
-      
-      if (page > 0) {
-         page = page - 1;
 
+      if (page > 0) {
+        page = page - 1;
         displayEntries(page * MAX_MENU_ITEMS_ON_SCREEN);
-        setMenuIndicator(MAX_MENU_ITEMS_ON_SCREEN - 1);
+         setMenuIndicator(menuIndicatorIndex);
       }
-      
+
     }
     else if (down_triggered)
     {
@@ -320,10 +319,11 @@ void listEntries(bool deleteMode = false)
       }
     } else if (down_long_triggered) {
       down_long_triggered = false;
-      
-       page = page + 1;
-        displayEntries(MAX_MENU_ITEMS_ON_SCREEN * page);
-        setMenuIndicator(0);
+      if (page * MAX_MENU_ITEMS_ON_SCREEN < columnCounter) {
+      page = page + 1;
+      displayEntries(MAX_MENU_ITEMS_ON_SCREEN * page);
+      setMenuIndicator(menuIndicatorIndex);
+      }
     }
     else if (enter_triggered)
     {
@@ -380,7 +380,7 @@ void listEntries(bool deleteMode = false)
             bleKeyboard.begin();
             unsigned long start_time = millis();
             tft.fillScreen(BACKGROUND_COLOR);
-           
+
             printCenter("Waiting for connection, timeout is 10 seconds...");
             while (!bleKeyboard.isConnected() && millis() - start_time < 10000)
             {
@@ -397,7 +397,7 @@ void listEntries(bool deleteMode = false)
             else
             {
               tft.fillScreen(BACKGROUND_COLOR);
-             printCenter("No connection made in 10 seconds!");
+              printCenter("No connection made in 10 seconds!");
 
               delay(1000);
             }
@@ -436,9 +436,9 @@ void deleteEntries()
 {
   String options[] = {"SET NEW KEY", "KEEP OLD KEY"};
   byte index = chooseListAction(options, 2);
-   Serial.println(index);
+  Serial.println(index);
   if (index == 0) {
-   
+
     printCenterUp("[ENTER NEW KEY]");
     tft.setCursor(0, HEIGHT / 2, FONT);
     tft.print(numbers[0]);
@@ -494,10 +494,10 @@ void deleteEntries()
       key[i] = alphabet[((String)key[i]).toInt()];
     }
     String key_dup = key;
-  while (key_dup.length() < PIN_UNLOCK_LENGTH) {
-    key_dup += key;
-  }
-  key = key_dup;
+    while (key_dup.length() < PIN_UNLOCK_LENGTH) {
+      key_dup += key;
+    }
+    key = key_dup;
   }
 
   emptyFile();
