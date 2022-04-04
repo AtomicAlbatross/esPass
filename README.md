@@ -43,7 +43,7 @@ This process is relatively straight forward.
 1. Clone this repo:
 
     ~~~
-    git clone https://github.com/atomicalbatross/Keypass
+    git clone https://github.com/atomicalbatross/esPass.git
     ~~~
         
 2. Prepare your Arduino environment. Download the arduino ide and install the ESP32 board definitions. **I HIGHLY RECOMMEND THE STANDALONE NOT-WINDOWS-STORE VERSION!** See section software notes why. A quick search using the search engine of your choice reveals how to do that. Then, install the following libraries:
@@ -76,9 +76,9 @@ This process is relatively straight forward.
 
     - [NimBLE](https://github.com/h2zero/NimBLE-Arduino) by h2zero
     
-    To finish the software side of the setup, download the [esp32-Encrypt helper functions](https://github.com/josephpal/esp32-Encrypt) by josephpal. Copy the file `src/Cipher.cpp` and `src/Cipher.h` into the main Keypass folder.
+    To finish the software side of the setup, download the [esp32-Encrypt helper functions](https://github.com/josephpal/esp32-Encrypt) by josephpal. Copy the file `src/Cipher.cpp` and `src/Cipher.h` into the main esPass folder.
 
-3. Finally, review the settings in the `config.h` file in the Keypass folder. See included comments for a detailed explanation of what certain defines do.
+3. Finally, review the settings in the `config.h` file in the esPass folder. See included comments for a detailed explanation of what certain defines do.
 
 4. Flash the ESP32.
 
@@ -90,7 +90,7 @@ This process is relatively straight forward.
 
 ## Hardware Setup
 
-1. Print the included files `stl/KeypassBody.stl` and `stl/KeypassBottom.stl` using your 3d printer. .2 layer height is sufficient.
+1. Print the included files `stl/esPassBody.stl` and `stl/esPassBottom.stl` using your 3d printer. .2 layer height is sufficient.
     
 2. Wiring:
     
@@ -172,10 +172,10 @@ This is not very secure as it might reduce the resistance against brute-force at
         Each entry has to be seperated by a comma. Make sure that the very last entry is closed by a comma.
         
     3. Install the ESP32 sketch data uploader in your Arduino IDE. **If you are using the Windows-Store-Version of the Arduino IDE, although technically possible, you cannot install external tools like this one. Use the standalone version instead.**
-    In the `Keypass/encrypt_file` folder, copy the text file you just created into the `data` folder an rename it to `data.txt`. Copy the `Cipher.cpp` and `Cipher.h` into the `encrypt_file` folder.
+    In the `esPass/encrypt_file` folder, copy the text file you just created into the `data` folder an rename it to `data.txt`. Copy the `Cipher.cpp` and `Cipher.h` into the `encrypt_file` folder.
         
     4. Open the `encrypt_file/encrypt_file.ino` sketch, adjust the values for the defines to match those in your `config.h` file. Change the KEY define to the key you want to use.
-    Then, use Tools > Upload ESP32 sketch data from the main menu to generate and upload the SPIFFS image. Finally, upload the sketch and let it run. You will see "DONE!" printed on the Serial Monitor at baud 115200. Upload the main `Keypass.ino` sketch and check if everything worked es intended.
+    Then, use Tools > Upload ESP32 sketch data from the main menu to generate and upload the SPIFFS image. Finally, upload the sketch and let it run. You will see "DONE!" printed on the Serial Monitor at baud 115200. Upload the main `esPass.ino` sketch and check if everything worked es intended.
 
 ## Security Considerations
 
@@ -191,7 +191,7 @@ As always, a device is just as secure as the most vulnerable link in its securit
     
 - You can - if you want to - encrypt flash storage, see [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/flash-encryption.html) for more details. As the encryption key is not hardcoded, there is not really a reason to do this, other than to keep the wordlist private.
     
-- While the device is powered on and unlocked the passwords are stored in RAM as plain text. An attacker could dip your unlocked Keypass into liquid nitrogen and freeze the memory to then later read the contents of it. Decide by yourself how likely this attack vector seems to be for you.
+- While the device is powered on and unlocked the passwords are stored in RAM as plain text. An attacker could dip your unlocked esPass into liquid nitrogen and freeze the memory to then later read the contents of it. Decide by yourself how likely this attack vector seems to be for you.
 
 
 ## Possible Modifications
