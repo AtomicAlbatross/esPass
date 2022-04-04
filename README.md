@@ -1,4 +1,4 @@
-# ESP32 Keypass
+# esPass
 
 
 
@@ -6,7 +6,7 @@
 
 # Your Passwords. In your pocket.
 
-The ESP32 Keypass is a small device that stores all your passwords in a dry and save place, fully encrypted.
+The esPass is a small device that stores all your passwords in a dry and save place, fully encrypted.
 
 
 
@@ -22,7 +22,7 @@ The ESP32 Keypass is a small device that stores all your passwords in a dry and 
 
 ## Requirements
 
-- An ESP32. You can use the -S2 variant so that you don't have to use an Arduino Pro Micro as a Keyboard Emulator, but you do give up bluetooth connectivity. Modification of the sketch is required for that variant to work at the moment.
+- An ESP32. You can use the -12K variant so that you don't have to use an Arduino Pro Micro as a Keyboard Emulator, but you do give up bluetooth connectivity. Modification of the sketch is required for that variant to work at the moment.
 
 - An Arduino Pro Micro. Used for USB Keyboard Emulation.
 
