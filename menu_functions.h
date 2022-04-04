@@ -20,10 +20,9 @@ void setMenuIndicator(byte index, byte limit = MAX_MENU_ITEMS_ON_SCREEN - 1)
 void displayEntries(int startValue = 0, byte page = 0)
 {
   tft.fillScreen(BACKGROUND_COLOR);
-  Serial.println(columnCounter);
   int limit = MAX_MENU_ITEMS_ON_SCREEN;
-  if (columnCounter - startValue < MAX_MENU_ITEMS_ON_SCREEN) {
-    limit = columnCounter - startValue;
+  if (columnCounter - startValue <= MAX_MENU_ITEMS_ON_SCREEN) {
+    limit = columnCounter - startValue + 1;
   }
   for (int i = 0; i < limit - 1; i++)
   {
